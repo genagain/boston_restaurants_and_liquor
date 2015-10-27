@@ -23,20 +23,20 @@ function drawMap () {
 
   var allRestaurants = [];
 
-  for (var i = 1; i < 3; i++) {
-    // if (restaurants[i]["stno"] !== undefined && restaurants[i]["address"] !== undefined) {
+  for (var i = 1; i < 20; i++) {
+    if (restaurants[i]["stno"] !== undefined && restaurants[i]["address"] !== undefined) {
 
-      var address = restaurants[i]['stno'] + restaurants[i]['address'] + ", Boston, MA";
-      allRestaurants.push([address, restaurants[i]["businessname"], 'blue']);
-    // }
+    // debugger;
+    var address = restaurants[i]['stno'] + restaurants[i]['address'] + ", Boston, MA";
+    allRestaurants.push([address, restaurants[i]["businessname"], 'blue']);
+    }
   }
-  debugger;
-    dataTable.addRows(allRestaurants);
+  dataTable.addRows(allRestaurants);
 
 
 
   var options = {
-    zoomLevel: 14,
+    zoomLevel: 13,
     showTip: true,
     useMapTypeControl: true,
     icons: {
