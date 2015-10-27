@@ -23,13 +23,14 @@ function drawMap () {
 
   var allRestaurants = [];
 
-  // for (var i = 0; 1 < restaurants.length; i++) {
+  for (var i = 1; i < 3; i++) {
     // if (restaurants[i]["stno"] !== undefined && restaurants[i]["address"] !== undefined) {
-      var address = restaurants[1]['stno'] + restaurants[1]['address'];
-      allRestaurants.push([address, restaurants[1]["businessname"], 'blue']);
 
+      var address = restaurants[i]['stno'] + restaurants[i]['address'] + ", Boston, MA";
+      allRestaurants.push([address, restaurants[i]["businessname"], 'blue']);
     // }
-  // }
+  }
+  debugger;
     dataTable.addRows(allRestaurants);
 
 
