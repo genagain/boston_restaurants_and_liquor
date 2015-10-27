@@ -34,12 +34,12 @@ zoomLevel: 14,
            useMapTypeControl: true,
            icons: {
 blue: {
-normal: url + 'img/restaurant_icon.png',
-          selected: url + 'img/restaurant_icon.png'
+normal: url + 'images/restaurant_icon.png',
+          selected: url + 'images/restaurant_icon.png'
       },
 green: {
-normal: url +'img/drink_icon.png',
-          selected: url + 'img/drink_icon.png'
+normal: url +'images/drink_icon.png',
+          selected: url + 'images/drink_icon.png'
        },
 pink: {
 normal:   url + 'Map-Marker-Ball-Pink-icon.png',
