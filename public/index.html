@@ -2,7 +2,7 @@
   <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="js/vendor/jquery-1.11.3.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt1ogNvL5DkwElr02E30aHG79V3T-VWak&signed_in=true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt1ogNvL5DkwElr02E30aHG79V3T-VWak"></script>
     <script>
       var script = '<script type="text/javascript" src="js/vendor/markerclusterer';
       if (document.location.search.indexOf('compiled') !== -1) {
@@ -12,9 +12,19 @@
       document.write(script);
     </script>
     <script type="text/javascript" src="js/map.js"></script>
+      <link rel="stylesheet" href="css/vendor/normalize.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="css/vendor/foundation.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
   </head>
   <body>
-    <div id="map_div" style="height: 500px; width: 900px"></div>
+    <div class="row">
+      <div class="large-8 columns">
+        <div id="map_div" style="height: 500px; width: 900px"></div>
+      </div>
+      <div class="large-4 columns">
+        <div id="legend"></div>
+      </div>
+    </div>
   </body>
 </html>
 
