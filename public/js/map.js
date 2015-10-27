@@ -8,7 +8,7 @@ $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, s
   liquor = data;
 });
 
-$.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
+$.get('https://data.cityofboston.gov/resource/gb6y-34cq.json', function (data, status) {
   restaurants = data;
 });
 
@@ -23,12 +23,15 @@ function drawMap () {
 
   var allRestaurants = [];
 
-  for (var i = 1; i < 20; i++) {
-    if (restaurants[i]["stno"] !== undefined && restaurants[i]["address"] !== undefined) {
+  for (var i = 1; i < restaurants.length; i++) {
+    if (restaurants[i]["address"] !== undefined) {
 
     // debugger;
-    var address = restaurants[i]['stno'] + restaurants[i]['address'] + ", Boston, MA";
+    var address = restaurants[i]['address'] + ", Boston, MA";
     allRestaurants.push([address, restaurants[i]["businessname"], 'blue']);
+    }
+    if (i % 10 === 0){
+      console.log('.');
     }
   }
   dataTable.addRows(allRestaurants);
