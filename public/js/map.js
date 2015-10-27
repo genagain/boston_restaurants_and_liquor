@@ -1,4 +1,3 @@
-'use strict';
 
 //Liquor licenses data
 var liquor = 0;
@@ -16,23 +15,25 @@ google.load('visualization', '1.1', {packages: ['map']});
 google.setOnLoadCallback(drawMap);
 
 function drawMap () {
+  'use strict';
   var dataTable = new google.visualization.DataTable();
   dataTable.addColumn('string', 'Address');
   dataTable.addColumn('string', 'Location');
   dataTable.addColumn('string', 'Marker');
 
   var allPlaces = [];
+  var address;
 
   for (var i = 1; i < 21; i++) {
-    if (restaurants[i]["address"] !== undefined) {
-      var address = restaurants[i]['address'] + ", Boston, MA";
-      allPlaces.push([address, restaurants[i]["businessname"], 'restaurant']);
+    if (restaurants[i].address !== undefined) {
+      address = restaurants[i].address + ", Boston, MA";
+      allPlaces.push([address, restaurants[i].businessname, 'restaurant']);
     }
   }
-  for (var i = 1; i < 21; i++) {
-    if (restaurants[i]["address"] !== undefined) {
-      var address = restaurants[i]['address'] + ", Boston, MA";
-      allPlaces.push([address, restaurants[i]["businessname"], 'liquor']);
+  for (i = 1; i < 21; i++) {
+    if (restaurants[i].address !== undefined) {
+      address = restaurants[i].address + ", Boston, MA";
+      allPlaces.push([address, restaurants[i].businessname, 'liquor']);
     }
   }
   dataTable.addRows(allPlaces);
