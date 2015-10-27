@@ -21,20 +21,20 @@ function drawMap () {
   dataTable.addColumn('string', 'Location');
   dataTable.addColumn('string', 'Marker');
 
-  var allRestaurants = [];
+  var allPlaces = [];
 
-  for (var i = 1; i < restaurants.length; i++) {
+  for (var i = 1; i < 21; i++) {
     if (restaurants[i]["address"] !== undefined) {
 
     // debugger;
     var address = restaurants[i]['address'] + ", Boston, MA";
-    allRestaurants.push([address, restaurants[i]["businessname"], 'blue']);
+    allPlaces.push([address, restaurants[i]["businessname"], 'restaurant']);
     }
     if (i % 10 === 0){
       console.log('.');
     }
   }
-  dataTable.addRows(allRestaurants);
+  dataTable.addRows(allPlaces);
 
 
 
@@ -43,17 +43,13 @@ function drawMap () {
     showTip: true,
     useMapTypeControl: true,
     icons: {
-      blue: {
+      restaurant: {
         normal:  'images/restaurant_icon.png',
         selected: 'images/restaurant_icon.png'
       },
       green: {
         normal: +'images/drink_icon.png',
         selected: 'images/drink_icon.png'
-      },
-      pink: {
-        normal:    'Map-Marker-Ball-Pink-icon.png',
-        selected:  'Map-Marker-Ball-Right-Pink-icon.png'
       }
     }
   };
