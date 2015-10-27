@@ -17,6 +17,7 @@ google.setOnLoadCallback(drawMap);
 function drawMap () {
   'use strict';
   var dataTable = new google.visualization.DataTable();
+  var geocoder = new google.maps.Geocoder();
   dataTable.addColumn('string', 'Address');
   dataTable.addColumn('string', 'Location');
   dataTable.addColumn('string', 'Marker');
@@ -31,8 +32,8 @@ function drawMap () {
     }
   }
   for (i = 1; i < 21; i++) {
-    if (restaurants[i].address !== undefined) {
-      address = restaurants[i].address + ", Boston, MA";
+    if (liquor[i].stno !== undefined || liquor[i].address !== undefined) {
+      address = liquor[i].stno + liquor[i].address + ", Boston, MA";
       allPlaces.push([address, restaurants[i].businessname, 'liquor']);
     }
   }
