@@ -25,13 +25,14 @@ function drawMap () {
 
   for (var i = 1; i < 21; i++) {
     if (restaurants[i]["address"] !== undefined) {
-
-      // debugger;
       var address = restaurants[i]['address'] + ", Boston, MA";
       allPlaces.push([address, restaurants[i]["businessname"], 'restaurant']);
     }
-    if (i % 10 === 0){
-      console.log('.');
+  }
+  for (var i = 1; i < 21; i++) {
+    if (restaurants[i]["address"] !== undefined) {
+      var address = restaurants[i]['address'] + ", Boston, MA";
+      allPlaces.push([address, restaurants[i]["businessname"], 'liquor']);
     }
   }
   dataTable.addRows(allPlaces);
@@ -45,7 +46,7 @@ function drawMap () {
         normal:  'images/restaurant_icon.png',
         selected: 'images/restaurant_icon.png'
       },
-      green: {
+      liquor: {
         normal: 'images/drink_icon.png',
         selected: 'images/drink_icon.png'
       }
@@ -64,14 +65,14 @@ function drawMap () {
   };
 
   var legend = document.getElementById('legend');
-        for (var key in icons) {
-          var type = icons[key];
-          var name = type.name;
-          var icon = type.icon;
-          var div = document.createElement('div');
-          div.innerHTML = '<img src="' + icon + '"> ' + name;
-          legend.appendChild(div);
-        }
+  for (var key in icons) {
+    var type = icons[key];
+    var name = type.name;
+    var icon = type.icon;
+    var div = document.createElement('div');
+    div.innerHTML = '<img src="' + icon + '"> ' + name;
+    legend.appendChild(div);
+  }
   var map = new google.visualization.Map(document.getElementById('map_div'));
 
   map.draw(dataTable, options);
