@@ -36,8 +36,6 @@ function drawMap () {
   }
   dataTable.addRows(allPlaces);
 
-
-
   var options = {
     zoomLevel: 13,
     showTip: true,
