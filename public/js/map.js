@@ -5,49 +5,55 @@ var liquor = 0;
 var restaurants = 0;
 
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
-    liquor = data;
- });
+  liquor = data;
+});
 
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
-    restaurants = data;
- });
+  restaurants = data;
+});
 
 google.load('visualization', '1.1', {packages: ['map']});
-      google.setOnLoadCallback(drawMap);
+google.setOnLoadCallback(drawMap);
 
-      function drawMap () {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Address');
-        data.addColumn('string', 'Location');
-        data.addColumn('string', 'Marker')
+function drawMap () {
+  var dataTable = new google.visualization.DataTable();
+  dataTable.addColumn('string', 'Address');
+  dataTable.addColumn('string', 'Location');
+  dataTable.addColumn('string', 'Marker');
 
-          data.addRows([
-              ['150 Commonwealth Av, Boston, MA, United States', 'Chilton Club',   'blue' ],
-              ['60 Paris St, Boston, MA, United Statess',      'Italian American War Vets',   'green'],
-              ]);
-        // TODO change this url to heroku app url and add logic to it
-        var url = ''
+  var allRestaurants = [];
 
-        var options = {
-zoomLevel: 14,
-           showTip: true,
-           useMapTypeControl: true,
-           icons: {
-blue: {
-normal: url + 'images/restaurant_icon.png',
-          selected: url + 'images/restaurant_icon.png'
+  // for (var i = 0; 1 < restaurants.length; i++) {
+    // if (restaurants[i]["stno"] !== undefined && restaurants[i]["address"] !== undefined) {
+      var address = restaurants[1]['stno'] + restaurants[1]['address'];
+      allRestaurants.push([address, restaurants[1]["businessname"], 'blue']);
+
+    // }
+  // }
+    dataTable.addRows(allRestaurants);
+
+
+
+  var options = {
+    zoomLevel: 14,
+    showTip: true,
+    useMapTypeControl: true,
+    icons: {
+      blue: {
+        normal:  'images/restaurant_icon.png',
+        selected: 'images/restaurant_icon.png'
       },
-green: {
-normal: url +'images/drink_icon.png',
-          selected: url + 'images/drink_icon.png'
-       },
-pink: {
-normal:   url + 'Map-Marker-Ball-Pink-icon.png',
-          selected: url + 'Map-Marker-Ball-Right-Pink-icon.png'
+      green: {
+        normal: +'images/drink_icon.png',
+        selected: 'images/drink_icon.png'
+      },
+      pink: {
+        normal:    'Map-Marker-Ball-Pink-icon.png',
+        selected:  'Map-Marker-Ball-Right-Pink-icon.png'
       }
-           }
-        };
-        var map = new google.visualization.Map(document.getElementById('map_div'));
+    }
+  };
+  var map = new google.visualization.Map(document.getElementById('map_div'));
 
-        map.draw(data, options);
-      }
+  map.draw(dataTable, options);
+}
