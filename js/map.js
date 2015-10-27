@@ -1,3 +1,17 @@
+'use strict';
+
+//Liquor licenses data
+var liquor = 0;
+var restaurants = 0;
+
+$.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
+    liquor = data;
+ });
+
+$.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
+    restaurants = data;
+ });
+
 google.load('visualization', '1.1', {packages: ['map']});
       google.setOnLoadCallback(drawMap);
 
