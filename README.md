@@ -26,7 +26,7 @@ This projects also contains a Rack server configuration which can be used to run
 
 ```bundle install```
 
-If you do not have bundler go to [bundler.io](http://bundler.io/)
+If you do not have bundler go to [bundler.io](http://bundler.io/) to install it
 
 **Go to the root of this directory and run the following command in your terminal**
 
