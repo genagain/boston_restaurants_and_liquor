@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
+<!-- <div id="slider"></div> -->
 <div id="slider"></div>
 <div class="row">
   <div class="large-8 columns">
@@ -30,19 +31,20 @@
 </body>
 <script>
 $("#slider").dateRangeSlider({
-bounds: {min: new Date(2015, 4, 19), max: new Date(2015, 9, 27)},
+bounds: {min: new Date(2013, 9, 2), max: new Date(2015, 9, 27)},
 defaultValues: {min: new Date(2015, 4, 19), max: new Date(2015, 5, 19)}});
-</script>
-<!-- <script> -->
-<!-- $(document).foundation({ -->
-  <!-- slider: { -->
-    <!-- on_change: function(){ -->
-      <!-- // do something when the value change -->
+$("#slider").bind("valuesChanging", function(e, data){
+    $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
+      liquor = data;
+      });
 
-    <!-- } -->
-  <!-- } -->
-<!-- }); -->
-<!-- $(document).foundation('slider', 'reflow'); -->
-<!-- </script> -->
+    $.get('https://data.cityofboston.gov/resource/gb6y-34cq.json', function (data, status) {
+      restaurants = data;
+      });
+});
+
+var dataTable = new google.visualization.DataTable();
+
+</script>
 </html>
 

@@ -4,7 +4,8 @@ var liquor;
 var restaurants;
 var min;
 var max;
-
+var allPlaces = [];
+var address;
 
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm DESC&$limit=1&$where=issdttm IS NOT NULL', function (data, status) {
   min = data[0].issdttm;
@@ -14,28 +15,34 @@ $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm ASC&
   max = data[0].issdttm;
 });
 
-var range = "start: "+ min + "; end: " + max + ";";
-console.log(range)
-
-/* $('.range-slider').foundation('data-options', 'set_value', range); */
-// $('.range-slider').attr('data-slider');
-
-$.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
+//liquor
+$.get("https://data.cityofboston.gov/resource/hda6-fnsh.json?$where=issdttm < \'2013-10-19T14:00:00\'", function (data, status) {
   liquor = data;
+  for (var i = 0; i < data.length; i++) {
+    if (liquor[i].stno !== undefined || liquor[i].address !== undefined) {
+      address = liquor[i].stno + liquor[i].address + ", Boston, MA";
+      allPlaces.push([address, liquor[i].businessname, 'liquor']);
+    }
+  }
 });
 
-$.get('https://data.cityofboston.gov/resource/gb6y-34cq.json', function (data, status) {
+//restaurants
+$.get("https://data.cityofboston.gov/resource/gb6y-34cq.json?$where=licenseadddttm < \'2006-12-06T12:00:00\'", function (data, status) {
   restaurants = data;
+  for (i = 0; i < data.length; i++) {
+    if (restaurants[i].address !== undefined) {
+      address = restaurants[i].address + ", Boston, MA";
+      allPlaces.push([address, restaurants[i].businessname, 'restaurant']);
+    }
+  }
 });
 
 google.load('visualization', '1.1', {packages: ['map']});
 
 window.onload = drawMap;
 
-
 function drawMap () {
   'use strict';
-  var dataTable = new google.visualization.DataTable();
   var icons = {
     restaurant: {
       name: 'Restaurants',
@@ -51,22 +58,6 @@ function drawMap () {
   dataTable.addColumn('string', 'Location');
   dataTable.addColumn('string', 'Marker');
 
-  var allPlaces = [];
-  var address;
-
-  for (var i = 1; i < 21; i++) {
-    if (restaurants[i].address !== undefined) {
-      address = restaurants[i].address + ", Boston, MA";
-      allPlaces.push([address, restaurants[i].businessname, 'restaurant']);
-    }
-  }
-
-  for (i = 1; i < 21; i++) {
-    if (liquor[i].stno !== undefined || liquor[i].address !== undefined) {
-      address = liquor[i].stno + liquor[i].address + ", Boston, MA";
-      allPlaces.push([address, restaurants[i].businessname, 'liquor']);
-    }
-  }
   dataTable.addRows(allPlaces);
 
   var options = {
