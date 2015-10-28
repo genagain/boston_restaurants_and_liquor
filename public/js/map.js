@@ -12,11 +12,22 @@ $.get('https://data.cityofboston.gov/resource/gb6y-34cq.json', function (data, s
 });
 
 google.load('visualization', '1.1', {packages: ['map']});
-google.setOnLoadCallback(drawMap);
+google.maps.event.addDomListener(window, 'load', drawMap);
 
 function drawMap () {
   'use strict';
   var dataTable = new google.visualization.DataTable();
+  var icons = {
+    restaurant: {
+      name: 'Restaurants',
+      icon: 'images/restaurant_icon.png'
+    },
+    alcohol: {
+      name: 'Alcohol Establishments',
+      icon: 'images/drink_icon.png'
+    }
+  };
+
   dataTable.addColumn('string', 'Address');
   dataTable.addColumn('string', 'Location');
   dataTable.addColumn('string', 'Marker');
@@ -30,9 +41,10 @@ function drawMap () {
       allPlaces.push([address, restaurants[i].businessname, 'restaurant']);
     }
   }
+
   for (i = 1; i < 21; i++) {
-    if (restaurants[i].address !== undefined) {
-      address = restaurants[i].address + ", Boston, MA";
+    if (liquor[i].stno !== undefined || liquor[i].address !== undefined) {
+      address = liquor[i].stno + liquor[i].address + ", Boston, MA";
       allPlaces.push([address, restaurants[i].businessname, 'liquor']);
     }
   }
@@ -51,17 +63,6 @@ function drawMap () {
         normal: 'images/drink_icon.png',
         selected: 'images/drink_icon.png'
       }
-    }
-  };
-
-  var icons = {
-    restaurant: {
-      name: 'Restaurants',
-      icon: 'images/restaurant_icon.png'
-    },
-    alcohol: {
-      name: 'Alcohol Establishments',
-      icon: 'images/drink_icon.png'
     }
   };
 
