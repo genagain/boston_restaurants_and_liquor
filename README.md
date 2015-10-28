@@ -2,9 +2,9 @@
 
 This visualizes places with liquor and active food establishment licenses in Boston. These data sources are below. 
 
-*[Active food establishment licenses](https://data.cityofboston.gov/Permitting/Active-Food-Establishment-Licenses/gb6y-34cq)
+* [Active food establishment licenses](https://data.cityofboston.gov/Permitting/Active-Food-Establishment-Licenses/gb6y-34cq)
 
-*[Liquor licenses](https://data.cityofboston.gov/dataset/Liquor-Licenses/hda6-fnsh)
+* [Liquor licenses](https://data.cityofboston.gov/dataset/Liquor-Licenses/hda6-fnsh)
 
 To run this project on your machine, please do the following:
 
