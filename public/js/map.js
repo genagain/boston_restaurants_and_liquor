@@ -2,6 +2,7 @@
 //Liquor licenses data
 var liquor = 0;
 var restaurants = 0;
+var =
 
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
   liquor = data;
@@ -14,10 +15,26 @@ $.get('https://data.cityofboston.gov/resource/gb6y-34cq.json', function (data, s
 google.load('visualization', '1.1', {packages: ['map']});
 google.setOnLoadCallback(drawMap);
 
+
+function theNext(){
+
+}
+
 function drawMap () {
   'use strict';
   var dataTable = new google.visualization.DataTable();
   var geocoder = new google.maps.Geocoder();
+  var icons = {
+    restaurant: {
+      name: 'Restaurants',
+      icon: 'images/restaurant_icon.png'
+    },
+    alcohol: {
+      name: 'Alcohol Establishments',
+      icon: 'images/drink_icon.png'
+    }
+  };
+
   dataTable.addColumn('string', 'Address');
   dataTable.addColumn('string', 'Location');
   dataTable.addColumn('string', 'Marker');
@@ -28,9 +45,18 @@ function drawMap () {
   for (var i = 1; i < 21; i++) {
     if (restaurants[i].address !== undefined) {
       address = restaurants[i].address + ", Boston, MA";
+      /* geocoder.geocode({ 'address': address}, function(results){ */
+        // var marker  = new google.maps.Marker({
+          // map: map,
+          // position: results[0].geometry.location,
+          // icon: icon
+        // });
+      /* }) */
       allPlaces.push([address, restaurants[i].businessname, 'restaurant']);
+
     }
   }
+
   for (i = 1; i < 21; i++) {
     if (liquor[i].stno !== undefined || liquor[i].address !== undefined) {
       address = liquor[i].stno + liquor[i].address + ", Boston, MA";
@@ -52,17 +78,6 @@ function drawMap () {
         normal: 'images/drink_icon.png',
         selected: 'images/drink_icon.png'
       }
-    }
-  };
-
-  var icons = {
-    restaurant: {
-      name: 'Restaurants',
-      icon: 'images/restaurant_icon.png'
-    },
-    alcohol: {
-      name: 'Alcohol Establishments',
-      icon: 'images/drink_icon.png'
     }
   };
 
