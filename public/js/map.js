@@ -2,18 +2,8 @@
 //Liquor licenses data
 var liquor;
 var restaurants;
-var min;
-var max;
 var allPlaces = [];
 var address;
-
-$.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm DESC&$limit=1&$where=issdttm IS NOT NULL', function (data, status) {
-  min = data[0].issdttm;
-});
-
-$.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm ASC&$limit=1&$where=issdttm IS NOT NULL', function (data, status) {
-  max = data[0].issdttm;
-});
 
 //liquor
 $.get("https://data.cityofboston.gov/resource/hda6-fnsh.json?$where=issdttm < \'2013-10-19T14:00:00\'", function (data, status) {
