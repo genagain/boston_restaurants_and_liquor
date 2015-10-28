@@ -5,7 +5,6 @@ var restaurants;
 var min;
 var max;
 
-$('.range-slider').attr('data-slider');
 
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm DESC&$limit=1&$where=issdttm IS NOT NULL', function (data, status) {
   min = data[0].issdttm;
@@ -14,6 +13,13 @@ $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm DESC
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm ASC&$limit=1&$where=issdttm IS NOT NULL', function (data, status) {
   max = data[0].issdttm;
 });
+$("#slider").dateRangeSlider();
+
+var range = "start: "+ min + "; end: " + max + ";";
+console.log(range)
+
+/* $('.range-slider').foundation('data-options', 'set_value', range); */
+// $('.range-slider').attr('data-slider');
 
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json', function (data, status) {
   liquor = data;
