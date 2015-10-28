@@ -13,7 +13,6 @@ $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm DESC
 $.get('https://data.cityofboston.gov/resource/hda6-fnsh.json?$order=issdttm ASC&$limit=1&$where=issdttm IS NOT NULL', function (data, status) {
   max = data[0].issdttm;
 });
-$("#slider").dateRangeSlider();
 
 var range = "start: "+ min + "; end: " + max + ";";
 console.log(range)

@@ -29,7 +29,9 @@
 </div>
 </body>
 <script>
-$("#slider").dateRangeSlider();
+$("#slider").dateRangeSlider({
+bounds: {min: new Date(2015, 4, 19), max: new Date(2015, 9, 27)},
+defaultValues: {min: new Date(2015, 4, 19), max: new Date(2015, 5, 19)}});
 </script>
 <!-- <script> -->
 <!-- $(document).foundation({ -->
