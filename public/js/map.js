@@ -12,7 +12,9 @@ $.get('https://data.cityofboston.gov/resource/gb6y-34cq.json', function (data, s
 });
 
 google.load('visualization', '1.1', {packages: ['map']});
-google.maps.event.addDomListener(window, 'load', drawMap);
+
+window.onload = drawMap;
+
 
 function drawMap () {
   'use strict';
