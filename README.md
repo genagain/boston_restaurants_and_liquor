@@ -27,7 +27,7 @@ This projects also contains a Rack server configuration which can be used to run
 
 If you do not have bundler go to [bundler.io](http://bundler.io/)
 
-**Run the following command in your ```boston_restaurants_and_liquor``` directory**
+**Run the following command in your** ```boston_restaurants_and_liquor``` **directory**
 ```rackup```
 
 **Go to your browser and open http://localhost:9292**
