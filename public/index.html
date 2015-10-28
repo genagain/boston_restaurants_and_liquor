@@ -1,41 +1,35 @@
 <html>
-<head>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt1ogNvL5DkwElr02E30aHG79V3T-VWak"></script>
-<!-- <script type="text/javascript" src="js/vendor/jquery-1.11.3.min.js"></script> -->
-<!-- <script src="js/vendor/modernizr.js"></script> -->
-<script src="js/vendor/jquery.js"></script>
-<script src="js/vendor/jquery-ui.min.js"></script>
-<script src="js/vendor/jQDateRangeSlider-min.js"></script>
-<!-- <script src="js/vendor/fastclick.js"></script> -->
-<!-- <script src="js/vendor/foundation/foundation.min.js"> -->
-<!-- </script> -->
-<!-- <script src="js/vendor/foundation/foundation.slider.js"></script> -->
-<script type="text/javascript" src="js/map.js"></script>
-<link rel="stylesheet" href="css/vendor/normalize.css" media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" href="css/vendor/foundation.min.css" media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" href="css/vendor/iThing.css" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/app.css">
-</head>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt1ogNvL5DkwElr02E30aHG79V3T-VWak"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/jquery-ui.min.js"></script>
+    <script src="js/vendor/jQDateRangeSlider-min.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+
+    <link rel="stylesheet" href="css/vendor/normalize.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/vendor/foundation.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/vendor/iThing.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+  </head>
 <body>
-<!-- <div id="slider"></div> -->
-<div id="slider"></div>
-<div class="row">
-  <div class="large-8 columns">
-    <div id="map_div" style="height: 500px; width: 900px"></div>
+  <div id="slider"></div>
+  <div class="row">
+    <div class="large-8 columns">
+      <div id="map_div" style="height: 500px; width: 900px"></div>
+    </div>
+    <div class="large-4 columns">
+      <div id="legend"></div>
+    </div>
   </div>
-  <div class="large-4 columns">
-    <div id="legend"></div>
-  </div>
-</div>
 </body>
 <script>
-$("#slider").dateRangeSlider({
-bounds: {min: new Date(2013, 9, 2), max: new Date(2015, 9, 27)},
-defaultValues: {min: new Date(2013, 9, 2), max: new Date(2013, 11, 2)}});
-var dataTable = new google.visualization.DataTable();
-//2006-12-06T12:00:00
-$("#slider").bind("valuesChanging", function(e, data){
+  $("#slider").dateRangeSlider({
+  bounds: {min: new Date(2013, 9, 2), max: new Date(2015, 9, 27)},
+  defaultValues: {min: new Date(2013, 9, 2), max: new Date(2013, 11, 2)}});
+  var dataTable = new google.visualization.DataTable();
+  //2006-12-06T12:00:00
+  $("#slider").bind("valuesChanging", function(e, data){
     var date = data.values.max.getDate();
     var year = data.values.max.getFullYear();
     var month = data.values.max.getMonth() + 1;
@@ -53,45 +47,29 @@ $("#slider").bind("valuesChanging", function(e, data){
         }
       }
       console.log(allPlaces.length);
-      dataTable.addRows(allPlaces);
-     });
+    });
 
     $.get(restaurantEndpoint, function (data, status) {
-      restaurants = data;
-        for (i = 0; i < data.length; i++) {
-            if (restaurants[i].address !== undefined) {
-              address = restaurants[i].address + ", Boston, MA";
-              allPlaces.push([address, restaurants[i].businessname, 'restaurant']);
-            }
-          }
-      });
-
-  var options = {
-      zoomLevel: 13,
-      showTip: true,
-      useMapTypeControl: true,
-      icons: {
-        restaurant: {
-          normal:  'images/restaurant_icon.png',
-          selected: 'images/restaurant_icon.png'
-        },
-        liquor: {
-          normal: 'images/drink_icon.png',
-          selected: 'images/drink_icon.png'
-        }
+    restaurants = data;
+    for (i = 0; i < data.length; i++) {
+      if (restaurants[i].address !== undefined) {
+        address = restaurants[i].address + ", Boston, MA";
+        allPlaces.push([address, restaurants[i].businessname, 'restaurant']);
       }
-    };
+    }
+    });
+
+    dataTable.addRows(allPlaces);
+
     var map = new google.visualization.Map(document.getElementById('map_div'));
-  map.draw(dataTable, options);
-});
+    map.draw(dataTable, options);
+  });
 
-function pad(num, size) {
-    var s = num+"";
-    while (s.length < size) s = "0" + s;
-    return s;
-}
-
-
+  function pad(num, size) {
+      var s = num+"";
+      while (s.length < size) s = "0" + s;
+      return s;
+  }
 </script>
 </html>
 

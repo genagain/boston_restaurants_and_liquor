@@ -31,6 +31,22 @@ google.load('visualization', '1.1', {packages: ['map']});
 
 window.onload = drawMap;
 
+var options = {
+    zoomLevel: 13,
+    showTip: true,
+    useMapTypeControl: true,
+    icons: {
+      restaurant: {
+        normal:  'images/restaurant_icon.png',
+        selected: 'images/restaurant_icon.png'
+      },
+      liquor: {
+        normal: 'images/drink_icon.png',
+        selected: 'images/drink_icon.png'
+      }
+    }
+  };
+
 function drawMap () {
   'use strict';
   var icons = {
@@ -50,21 +66,6 @@ function drawMap () {
 
   dataTable.addRows(allPlaces);
 
-  var options = {
-    zoomLevel: 13,
-    showTip: true,
-    useMapTypeControl: true,
-    icons: {
-      restaurant: {
-        normal:  'images/restaurant_icon.png',
-        selected: 'images/restaurant_icon.png'
-      },
-      liquor: {
-        normal: 'images/drink_icon.png',
-        selected: 'images/drink_icon.png'
-      }
-    }
-  };
 
   var legend = document.getElementById('legend');
   for (var key in icons) {
